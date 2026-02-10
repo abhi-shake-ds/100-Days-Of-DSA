@@ -49,6 +49,5 @@ int main()
     {
         printf("%lld\n", power(a, b));
     }
-
     return 0;
 }

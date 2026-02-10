@@ -45,7 +45,7 @@ int main()
         {
             printf("Found at index %d\n", i);
             printf("Comparisons = %d\n", comparisons);
-            return 0;
+            return 0; 
         }
     }
 
