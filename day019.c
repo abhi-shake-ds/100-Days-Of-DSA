@@ -18,11 +18,12 @@
 // Explanation: Among all possible pairs, the sum of -10 and 1 is -9, which is the closest to zero compared to other pairs.
 #include <stdio.h>
 #include <stdlib.h>
-#include
+#include <limits.h>
 
+/* Compare function for qsort to sort integers in ascending order */
 int compare(const void *a, const void *b)
 {
-    return ((int)a - (int)b);
+    return (*(int *)a - *(int *)b);
 }
 
 int main()
@@ -30,7 +31,8 @@ int main()
     int n;
     int arr[100];
 
-    scanf("%d", &n);
+    if (scanf("%d", &n) != 1)
+        return 0;
     for (int i = 0; i < n; i++)
     {
         scanf("%d", &arr[i]);
@@ -46,6 +48,7 @@ int main()
     {
         int sum = arr[left] + arr[right];
 
+        /* Update results if current pair sum is closer to zero */
         if (abs(sum) < abs(minSum))
         {
             minSum = sum;
@@ -53,13 +56,18 @@ int main()
             resRight = arr[right];
         }
 
+        /* Move pointers based on whether sum is positive or negative */
         if (sum < 0)
         {
             left++;
         }
-        else
+        else if (sum > 0)
         {
             right--;
+        }
+        else
+        {
+            break; /* Sum is 0, closest possible result found */
         }
     }
 
